@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+@layer utilities {
+    .animate-slide-fade {
+        @apply transition-all duration-500 ease-out;
+        animation: slideFade 0.4s ease-out;
+    }
+
+    @keyframes slideFade {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #f59e0b;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+}

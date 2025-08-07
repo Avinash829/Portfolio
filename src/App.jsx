@@ -1,0 +1,29 @@
+import './App.css';
+import NavBar from './components/NavBar';
+import Home from './components/Home';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import About from './components/About';
+import AvinashAssistant from './components/AvinashAssistant';
+
+function App() {
+    return (
+
+        <div className="font-serif relative min-h-screen overflow-x-hidden text-white bg-black">
+            <div className="relative z-10">
+                <NavBar />
+                <Home />
+                <About />
+                <Skills />
+                <Projects />
+                <Contact />
+                <Footer />
+                <AvinashAssistant />
+            </div>
+        </div>
+    );
+}
+
+export default App;
