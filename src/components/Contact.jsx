@@ -74,7 +74,7 @@ const Contact = () => {
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start max-w-6xl mx-auto">
-                {/* Form */}
+               
                 <motion.form
                     ref={form}
                     onSubmit={sendEmail}
@@ -128,7 +128,6 @@ const Contact = () => {
                     )}
                 </motion.form>
 
-                {/* Contact Info */}
                 <motion.div
                     variants={sideFade("right")}
                     initial="hidden"

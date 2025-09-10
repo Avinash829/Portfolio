@@ -6,8 +6,13 @@ import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
 const resumeContext = `
 Avinash Pappala - Detailed Resume Context
 
-SUMMARY:
-I am a Computer Science undergraduate with strong problem-solving skills and a growing portfolio in full-stack development. My experience spans both frontend and backend technologies, with a particular interest in building scalable and responsive applications. I’ve completed a frontend internship, led technical projects, and actively participate in competitive programming communities.
+CONTACT:
+- Email: avinashpappala@gmail.com
+- Phone: +91 6300768805
+- LinkedIn: https://www.linkedin.com/in/avinashpappala/
+- GitHub: https://github.com/Avinash829
+- LeetCode: https://leetcode.com/u/avinash_829/
+- CodeChef: https://www.codechef.com/users/avinash_829
 
 ---
 
@@ -19,80 +24,58 @@ EDUCATION:
 
 ---
 
-TECHNOLOGIES:
-- Languages: Python, Java, JavaScript, SQL, C
-- Frameworks/Tools: React.js, Node.js, Express.js, Firebase, Power BI
-- Developer Tools: Git, GitHub, Visual Studio Code, PyCharm
-- Databases: MySQL, MongoDB
-
----
-
 EXPERIENCE:
 
-Frontend Developer Intern at ZORO Innovations (June 2025 – July 2025) [Remote]
-- Contributed to the development of Campus Core, a comprehensive campus management platform.
-- Built the Student Dashboard that enables students to manage attendance, view timetables, check results, and provide feedback.
-- Translated Figma designs into responsive, mobile-first UIs using React.js and Tailwind CSS.
-- Collaborated with backend and UI/UX teams to integrate APIs and ensure smooth user experience.
-- Tools used: React.js, Tailwind CSS, Vite, Figma, Git, REST APIs
+Full Stack Developer Intern – Willowave Platform Pvt. Ltd. (Sept 2025 – Present) [Remote]
+- Work on building and integrating REST APIs for client applications.
+- Implement LangChain-based AI features and optimize existing workflows.
+- Collaborate on full stack development with focus on performance and seamless integration.
+- Tools Used: React.js, Tailwind CSS, Node.js, Express.js, MongoDB, LangChain, Git.
+
+Frontend Developer Intern – ZORO Innovations (June 2025 – July 2025) [Remote]
+- Contributed to Campus Core, a campus management platform for students, faculty, and admins.
+- Built the Student Dashboard for managing attendance, timetable, results, and feedback.
+- Worked closely with backend and UI teams to integrate APIs and ensure smooth user experience.
+- Tools Used: React.js, Tailwind CSS, Vite, Figma, Git, REST APIs.
 
 ---
 
 PROJECTS:
 
 1. Chatterly - Real-Time Chat Application
-- Description: A fully functional real-time messaging platform allowing both one-on-one and group conversations.
-- Features:
-  - Authentication and secure login system
-  - End-to-end message encryption
-  - Live messaging using WebSockets
-  - Responsive design that adapts to mobile and desktop devices, styled similar to WhatsApp
-- Tech Stack: React.js, Node.js, Express.js, MongoDB, Socket.io, Tailwind CSS
+- Built a real-time chat application supporting one-on-one and group messaging.
+- Integrated authentication, end-to-end encryption, and live updates via WebSockets.
+- Developed a responsive UI with dynamic mobile and desktop views, WhatsApp-style.
+- Tools Used: React.js, Node.js, Express.js, MongoDB, Socket.io, Tailwind CSS.
 
 2. Health AI Assistant
-- Description: An AI-powered health assistant that reads and interprets medical reports in PDF format.
-- Features:
-  - Extracts health insights and symptoms from uploaded reports
-  - Provides both patient-friendly summaries and doctor-level technical analysis
-  - Includes a dynamic chatbot interface for health-related Q&A
-  - Integrated with Gemini AI for medical-grade interpretation
-- Tech Stack: Python, Gemini AI, Streamlit
+- Built an AI-powered assistant that analyzes health reports (PDFs) and provides both patient summaries and doctor-level insights.
+- Integrated features like symptom detection, treatment suggestions, and a dynamic health chatbot.
+- Completed full-stack development with Gemini AI integration for accurate medical interpretation.
+- Tools Used: Python, Gemini AI, Streamlit.
 
 3. SafeSeek
-- Description: A Chrome extension and web app that promotes respectful communication by filtering out toxic text.
-- Features:
-  - Real-time sentiment analysis of user input
-  - Labels content as Positive, Neutral, or Negative (toxic)
-  - Chrome extension blocks websites when toxic input is detected
-  - Promotes digital well-being by encouraging respectful language
-- Tech Stack: React, TypeScript, Perspective API, Python
+- Developed a real-time text classification tool to promote respectful communication using the Perspective API.
+- Instantly labels user input as Positive, Negative (toxic), or Neutral based on sentiment analysis.
+- Includes a downloadable Chrome extension that blocks websites when toxic input is detected.
+- Tools Used: React, TypeScript, Perspective API, Python.
+
+---
+
+SKILLS:
+- Languages: Python, JavaScript, Java, SQL, C
+- Frameworks & Libraries: React.js, Node.js, Express.js, LangChain, LangGraph, Firebase, Tailwind CSS
+- Developer Tools: Git, GitHub, VS Code, PyCharm, LangSmith
+- Databases: MongoDB, MySQL
 
 ---
 
 ACHIEVEMENTS:
-- 2★ coder on CodeChef with a peak rating of 1463
-- Ranked in the top 20% on LeetCode with a peak rating of 1626
-- Solved over 500 competitive programming problems
-- Campus Body Lead for GeeksforGeeks
-
----
-
-CERTIFICATIONS:
-- React for Frontend Development – CodeChef
-- Python for Data Science – IBM (via EdX)
-
----
-
-PROFILES:
-- GitHub: https://github.com/Avinash829
-- LeetCode: https://leetcode.com/u/avinash_829/
-- CodeChef: https://www.codechef.com/users/avinash_829
-- LinkedIn: https://www.linkedin.com/in/avinashpappala/
-
----
-
-This detailed context file is structured to support chatbot question-answering about my technical skills, project experience, tools used, and achievements.
+- Achieved 2★ on CodeChef (highest rating: 1463), top 20% on LeetCode (highest rating: 1647).
+- Solved 500+ problems across CodeChef, LeetCode, and GeeksforGeeks.
+- GeeksforGeeks Campus Body lead.
 `;
+
 
 
 
@@ -125,7 +108,9 @@ const AvinashAssistant = () => {
 
         try {
             const prompt = `
-You are Avinash's AI Assistant. Only answer questions related to him using the information below. If user wishes you like hi, hello, bye, good response, bad response etc.. respond politely and inform him that you are Avinash's Assistant ,If asked anything unrelated, respond:
+You are Avinash's AI Assistant. Only answer questions related to him using the information below. 
+If user says hi, hello, bye, or gives feedback, respond politely and mention you are Avinash's Assistant. 
+If asked anything unrelated, respond:
 "I'm Avinash's assistant. I can only answer questions related to his professional background, skills, projects, achievements, and tech experience."
 
 ${resumeContext}
@@ -161,14 +146,16 @@ User question: ${input}`;
     return (
         <div className="font-mono fixed bottom-6 right-6 z-50 flex flex-col items-end">
 
-            <button
+            <motion.button
                 onClick={toggleChat}
                 className={`p-4 rounded-full shadow-lg text-black transition-all 
-                    ${open ? 'bg-red-400 hover:bg-red-500' : 'bg-amber-400 hover:bg-yellow-500'}`}
+                    ${open ? 'bg-blue-400 hover:bg-blue-600' : 'bg-blue-400 hover:bg-blue-600'}`}
                 aria-label="Toggle Assistant"
+                animate={{ y: [0, -20, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
             >
                 <FaRobot />
-            </button>
+            </motion.button>
 
             <AnimatePresence>
                 {open && (
@@ -177,9 +164,9 @@ User question: ${input}`;
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 20 }}
                         className="mt-3 w-[90vw] max-w-[400px] h-[500px] bg-zinc-900 rounded-xl shadow-2xl 
-                                   flex flex-col overflow-hidden border border-amber-400"
+                                   flex flex-col overflow-hidden border border-blue-400"
                     >
-                        <div className="bg-amber-500 text-black text-center font-bold py-2">
+                        <div className="bg-blue-500 text-black text-center font-bold py-2">
                             Avinash's Assistant 🤖
                         </div>
 
@@ -214,7 +201,7 @@ User question: ${input}`;
                             />
                             <button
                                 onClick={sendMessage}
-                                className="bg-amber-500 px-3 py-3 rounded-r-md text-black hover:bg-amber-400 transition"
+                                className="bg-blue-500 px-3 py-3 rounded-r-md text-black hover:bg-blue-400 transition"
                             >
                                 <FaPaperPlane />
                             </button>

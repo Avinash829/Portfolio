@@ -31,11 +31,12 @@ const NavBar = () => {
         { id: 'about', label: 'About' },
         { id: 'skills', label: 'Skills' },
         { id: 'projects', label: 'Projects' },
+        { id: 'experience', label: 'Experience' },
         { id: 'contact', label: 'Contact' },
     ];
 
     return (
-        <nav className="p-4 shadow-md fixed w-full top-0 z-50 bg-black/30 backdrop-blur-md mb-2">
+        <nav className="p-4 shadow-md fixed w-full top-0 z-50 bg-black/30 backdrop-blur-md">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center text-amber-400 text-2xl font-bold space-x-3">
                     <img src="/logo.png" alt="logo" className="h-10 w-auto" />

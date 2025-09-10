@@ -2,31 +2,40 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
     FaPython, FaJsSquare, FaDatabase, FaNodeJs,
-    FaReact, FaGitAlt, FaGithub, FaChartBar,
+    FaReact, FaGitAlt, FaGithub, FaJava,
 } from "react-icons/fa";
 import {
     SiMysql, SiMongodb, SiExpress, SiFirebase,
-    SiPycharm, SiC, SiSocketdotio,
+    SiPycharm, SiC, SiTailwindcss, SiLangchain,
+    SiBootstrap, SiNextdotjs,
 } from "react-icons/si";
+import { TbTopologyStar3 } from "react-icons/tb";
+import { BiNetworkChart } from "react-icons/bi";
 
 const skills = [
     { name: "Python", icon: <FaPython className="text-yellow-300" /> },
     { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" /> },
-    { name: "C", icon: <SiC className="text-blue-300" /> },
+    { name: "Java", icon: <FaJava className="text-red-500" /> },
     { name: "SQL", icon: <FaDatabase className="text-green-300" /> },
+    { name: "C", icon: <SiC className="text-blue-300" /> },
 
     { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
+    { name: "Next.js", icon: <SiNextdotjs className="text-white" /> },
     { name: "Node.js", icon: <FaNodeJs className="text-green-400" /> },
-    { name: "Socket.io", icon: <SiSocketdotio className="text-white" /> },
     { name: "Express.js", icon: <SiExpress className="text-gray-300" /> },
+    { name: "LangChain", icon: <SiLangchain className="text-yellow-400" /> },
+    { name: "LangGraph", icon: <TbTopologyStar3 className="text-purple-400" /> },
     { name: "Firebase", icon: <SiFirebase className="text-yellow-400" /> },
-    { name: "Power BI", icon: <FaChartBar className="text-yellow-600" /> },
+    { name: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400" /> },
+    { name: "Bootstrap", icon: <SiBootstrap className="text-indigo-500" /> },
 
     { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
     { name: "GitHub", icon: <FaGithub className="text-white" /> },
     { name: "PyCharm", icon: <SiPycharm className="text-green-400" /> },
-    { name: "MySQL", icon: <SiMysql className="text-blue-500" /> },
+    { name: "LangSmith", icon: <BiNetworkChart className="text-pink-400" /> },
+
     { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
+    { name: "MySQL", icon: <SiMysql className="text-blue-500" /> },
 ];
 
 const containerVariants = {
@@ -40,19 +49,12 @@ const containerVariants = {
 };
 
 const cardVariants = {
-    hidden: {
-        opacity: 0,
-        y: 40,
-        scale: 0.95,
-    },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     show: {
         opacity: 1,
         y: 0,
         scale: 1,
-        transition: {
-            duration: 0.4,
-            ease: "easeOut",
-        },
+        transition: { duration: 0.4, ease: "easeOut" },
     },
 };
 

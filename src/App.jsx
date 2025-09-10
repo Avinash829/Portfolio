@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import About from './components/About';
 import AvinashAssistant from './components/AvinashAssistant';
+import Experience from './components/Experience';
 
 function App() {
     return (
@@ -18,7 +19,9 @@ function App() {
                 <About />
                 <Skills />
                 <Projects />
+                <Experience />
                 <Contact />
+
                 <Footer />
                 <AvinashAssistant />
             </div>
