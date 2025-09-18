@@ -39,3 +39,46 @@ button:hover {
 .custom-scrollbar::-webkit-scrollbar-track {
     background-color: transparent;
 }
+
+/* Animated gradient flowing along border */
+.glow-border {
+    position: relative;
+    border-radius: 0.75rem;
+    /* match rounded-xl */
+    overflow: hidden;
+}
+
+.glow-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    /* border thickness */
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+
+            #000000,
+            #fbbf24,
+            #000000);
+    background-size: 300% 300%;
+    animation: borderFlow 6s linear infinite;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+@keyframes borderFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

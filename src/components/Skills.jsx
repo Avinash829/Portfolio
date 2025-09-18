@@ -83,7 +83,7 @@ const Skills = () => {
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            className="group flex flex-col items-center justify-center p-5 sm:p-6 bg-gray-900 rounded-xl shadow-md transform hover:-translate-y-2 transition-all duration-300 hover:border border-amber-400"
+                            className=" glow-border group flex flex-col items-center justify-center p-5 sm:p-6 bg-gray-900 rounded-xl shadow-md transform hover:-translate-y-2 transition-all duration-300 hover:border border-amber-400"
                         >
                             <div className="text-4xl sm:text-5xl mb-2">{skill.icon}</div>
                             <p className="text-sm sm:text-base font-medium text-gray-200 group-hover:text-amber-400 transition-colors duration-300">

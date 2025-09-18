@@ -117,7 +117,7 @@ const Experience = () => {
                                 {exp.tools.map((tool, i) => (
                                     <div
                                         key={i}
-                                        className="flex items-center gap-2 bg-gray-800 px-3 py-2 rounded-lg shadow hover:shadow-lg transition"
+                                        className="glow-border flex items-center gap-2 bg-gray-800 px-3 py-2 rounded-lg shadow hover:shadow-lg transition"
                                     >
                                         <span className="text-xl">{tool.icon}</span>
                                         <span className="text-sm text-gray-300">

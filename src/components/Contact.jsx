@@ -74,7 +74,7 @@ const Contact = () => {
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start max-w-6xl mx-auto">
-               
+
                 <motion.form
                     ref={form}
                     onSubmit={sendEmail}
@@ -82,7 +82,7 @@ const Contact = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
-                    className="space-y-5 bg-black/40 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-md border border-amber-400 w-full"
+                    className="glow-border space-y-5 bg-black/40 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-md border border-amber-400 w-full"
                 >
                     {["name", "email", "title"].map((field, i) => (
                         <motion.input

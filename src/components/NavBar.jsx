@@ -36,7 +36,7 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className="p-4 shadow-md fixed w-full top-0 z-50 bg-black/30 backdrop-blur-md">
+        <nav className="p-4 shadow-md fixed w-full top-0 z-50 bg-black/55 backdrop-blur-lg">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center text-amber-400 text-2xl font-bold space-x-3">
                     <img src="/logo.png" alt="logo" className="h-10 w-auto" />

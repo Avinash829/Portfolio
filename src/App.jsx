@@ -13,6 +13,7 @@ function App() {
     return (
 
         <div className="font-serif relative min-h-screen overflow-x-hidden text-white bg-black">
+
             <div className="relative z-10">
                 <NavBar />
                 <Home />
