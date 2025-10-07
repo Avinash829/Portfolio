@@ -11,6 +11,8 @@ import {
 } from "react-icons/si";
 import { TbTopologyStar3 } from "react-icons/tb";
 import { BiNetworkChart } from "react-icons/bi";
+import PortfolioBackground from "./PortfolioBackground";
+
 
 const skills = [
     { name: "Python", icon: <FaPython className="text-yellow-300" /> },
@@ -61,6 +63,7 @@ const cardVariants = {
 const Skills = () => {
     return (
         <section id="skills" className="py-16 px-4 sm:px-6 lg:px-20 bg-black text-white pt-28">
+            <PortfolioBackground />
             <div className="max-w-7xl mx-auto text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}

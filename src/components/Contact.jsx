@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
+import PortfolioBackground from "./PortfolioBackground";
 
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -9,22 +10,28 @@ const fadeUp = {
 };
 
 const sideFade = (dir = "left") => ({
-    hidden: {
-        opacity: 0,
-        x: dir === "left" ? -60 : 60,
-    },
-    visible: {
-        opacity: 1,
-        x: 0,
-        transition: { duration: 0.7, ease: "easeOut" },
-    },
+    hidden: { opacity: 0, x: dir === "left" ? -60 : 60 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
 });
 
 const Contact = () => {
     const form = useRef();
+    const [formValues, setFormValues] = useState({
+        name: "",
+        email: "",
+        title: "",
+        message: "",
+    });
     const [sent, setSent] = useState(false);
     const [error, setError] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
+
+    const handleChange = (e) => {
+        setFormValues({
+            ...formValues,
+            [e.target.name]: e.target.value,
+        });
+    };
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -40,6 +47,7 @@ const Contact = () => {
                 setSent(true);
                 setError(false);
                 form.current.reset();
+                setFormValues({ name: "", email: "", title: "", message: "" });
                 setShowPopup(true);
                 setTimeout(() => setShowPopup(false), 5000);
             })
@@ -59,10 +67,10 @@ const Contact = () => {
                     exit={{ opacity: 0 }}
                     className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-md"
                 >
-                    Thank you, your message has been received successfully! I’ll get back to you soon.
+                    Thank you! Your message has been received successfully.
                 </motion.div>
             )}
-
+            <PortfolioBackground />
             <motion.h2
                 variants={fadeUp}
                 initial="hidden"
@@ -74,7 +82,7 @@ const Contact = () => {
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start max-w-6xl mx-auto">
-
+                {/* Form */}
                 <motion.form
                     ref={form}
                     onSubmit={sendEmail}
@@ -82,31 +90,55 @@ const Contact = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
-                    className="glow-border space-y-5 bg-black/40 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-md border border-amber-400 w-full"
+                    className="space-y-5 bg-black/40 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-md border border-amber-400 w-full"
                 >
-                    {["name", "email", "title"].map((field, i) => (
-                        <motion.input
-                            key={i}
-                            type={field === "email" ? "email" : "text"}
-                            name={field}
-                            placeholder={
-                                field === "name" ? "Your Name" :
-                                    field === "email" ? "Your Email" : "Subject"
-                            }
+                    <motion.div variants={fadeUp}>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your Name"
                             required
+                            value={formValues.name}
+                            onChange={handleChange}
                             className="w-full px-4 py-2 rounded border border-amber-50 text-white bg-transparent focus:border-amber-400 focus:outline-none"
-                            variants={fadeUp}
                         />
-                    ))}
+                    </motion.div>
 
-                    <motion.textarea
-                        name="message"
-                        placeholder="Your Message"
-                        required
-                        rows="5"
-                        className="w-full px-4 py-2 rounded border border-amber-50 text-white bg-transparent focus:border-amber-400 focus:outline-none"
-                        variants={fadeUp}
-                    />
+                    <motion.div variants={fadeUp}>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Your Email"
+                            required
+                            value={formValues.email}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 rounded border border-amber-50 text-white bg-transparent focus:border-amber-400 focus:outline-none"
+                        />
+                    </motion.div>
+
+                    <motion.div variants={fadeUp}>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="Subject"
+                            required
+                            value={formValues.title}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 rounded border border-amber-50 text-white bg-transparent focus:border-amber-400 focus:outline-none"
+                        />
+                    </motion.div>
+
+                    <motion.div variants={fadeUp}>
+                        <textarea
+                            name="message"
+                            placeholder="Your Message"
+                            required
+                            rows="5"
+                            value={formValues.message}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 rounded border border-amber-50 text-white bg-transparent focus:border-amber-400 focus:outline-none"
+                        />
+                    </motion.div>
 
                     <motion.button
                         type="submit"
@@ -128,6 +160,7 @@ const Contact = () => {
                     )}
                 </motion.form>
 
+                {/* Contact Info */}
                 <motion.div
                     variants={sideFade("right")}
                     initial="hidden"

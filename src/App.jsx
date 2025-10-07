@@ -8,12 +8,16 @@ import Footer from './components/Footer';
 import About from './components/About';
 import AvinashAssistant from './components/AvinashAssistant';
 import Experience from './components/Experience';
+import PortfolioBackground from './components/PortfolioBackground'; // <-- updated import
 
 function App() {
     return (
-
         <div className="font-serif relative min-h-screen overflow-x-hidden text-white bg-black">
 
+            {/* Persistent animated background */}
+            <PortfolioBackground />
+
+            {/* All your main content */}
             <div className="relative z-10">
                 <NavBar />
                 <Home />
@@ -22,7 +26,6 @@ function App() {
                 <Projects />
                 <Experience />
                 <Contact />
-
                 <Footer />
                 <AvinashAssistant />
             </div>
