@@ -1,3 +1,3 @@
 
 
-**live link**: https://avinashpappala829.pages.dev/
+**live link**: https://avinashpappala.tech
