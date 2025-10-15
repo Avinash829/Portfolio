@@ -22,7 +22,7 @@ const Contact = () => {
         title: "",
         message: "",
     });
-    const [sent, setSent] = useState(false);
+    const [, setSent] = useState(false);
     const [error, setError] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
 
