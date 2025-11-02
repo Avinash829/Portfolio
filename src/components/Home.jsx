@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaStar } from 'react-icons/fa';
-import { Typewriter } from 'react-simple-typewriter';
+import React from "react";
+import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin, FaEnvelope, FaStar } from "react-icons/fa";
+import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
     return (
@@ -16,7 +16,9 @@ const Home = () => {
                 className="bg-black text-green-400 border border-green-500 px-4 py-2 rounded-full mb-6 shadow-md flex items-center space-x-2 mt-10"
             >
                 <FaStar className="text-yellow-400" />
-                <span className="text-sm sm:text-base">Welcome to my Portfolio</span>
+                <span className="text-sm sm:text-base">
+                    Welcome to my Portfolio
+                </span>
             </motion.div>
 
             <motion.h1
@@ -34,13 +36,13 @@ const Home = () => {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="text-cyan-400 text-xl sm:text-2xl md:text-3xl font-medium mb-8"
             >
-                I am a{' '}
+                I am a{" "}
                 <span className="text-white">
                     <Typewriter
                         words={[
-                            'Full Stack Developer',
-                            'Data Analyst',
-                            'Competitive Programmer',
+                            "Full Stack Developer",
+                            "Data Analyst",
+                            "Competitive Programmer",
                         ]}
                         loop={0}
                         cursor
@@ -65,10 +67,10 @@ const Home = () => {
                     Hire Me
                 </a>
                 <a
-                    href="https://drive.google.com/file/d/1MbKrimDtxAdqOiZTDSyAPpuxbdNdAXqh/view?usp=drive_link"
+                    href="/Avinash_Pappala_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-transparent border border-white hover:bg-white hover:text-black text-white px-6 py-3 rounded-full transition-all duration-300 text-sm sm:text-base"
+                    className="bg-transparent border border-white hover:bg-white hover:text-black text-white px-6 py-3 rounded-full transition-all duration-300 text-sm sm:text-base hover:cursor-pointer"
                 >
                     My Resume
                 </a>

@@ -8,8 +8,12 @@ import {
     SiVite,
     SiFigma,
     SiLangchain,
+    SiTypescript,
+    SiNextdotjs,
 } from "react-icons/si";
+import { TbTopologyStar3 } from "react-icons/tb"; // for React XyFlow (flow/network-like icon)
 
+// ✅ Experience Data
 const experiences = [
     {
         role: "Full Stack Developer Intern",
@@ -20,15 +24,27 @@ const experiences = [
             "Work on building and integrating REST APIs for client applications.",
             "Implement LangChain-based AI features and optimize existing workflows.",
             "Collaborate on full stack development with focus on performance and seamless integration.",
+            "Develop dynamic UIs using Next.js and TypeScript for improved reliability.",
+            "Utilize React XyFlow to create visual workflow editors and interactive diagrams.",
         ],
         tools: [
-            { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
-            { name: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400" /> },
+            { name: "Next.js", icon: <SiNextdotjs className="text-white" /> },
+            {
+                name: "TypeScript",
+                icon: <SiTypescript className="text-blue-500" />,
+            },
             { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-            { name: "Express.js", icon: <SiExpress className="text-gray-300" /> },
+            {
+                name: "Express.js",
+                icon: <SiExpress className="text-gray-300" />,
+            },
             { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
-            { name: "LangChain", icon: <SiLangchain className="text-yellow-400" /> },
+            {
+                name: "LangChain",
+                icon: <SiLangchain className="text-yellow-400" />,
+            },
             { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
+            { name: "Figma", icon: <SiFigma className="text-pink-500" /> },
         ],
     },
     {
@@ -43,7 +59,10 @@ const experiences = [
         ],
         tools: [
             { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
-            { name: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400" /> },
+            {
+                name: "Tailwind CSS",
+                icon: <SiTailwindcss className="text-sky-400" />,
+            },
             { name: "Vite", icon: <SiVite className="text-purple-400" /> },
             { name: "Figma", icon: <SiFigma className="text-pink-500" /> },
             { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
@@ -119,7 +138,9 @@ const Experience = () => {
                                         key={i}
                                         className="glow-border flex items-center gap-2 bg-gray-800 px-3 py-2 rounded-lg shadow hover:shadow-lg transition"
                                     >
-                                        <span className="text-xl">{tool.icon}</span>
+                                        <span className="text-xl">
+                                            {tool.icon}
+                                        </span>
                                         <span className="text-sm text-gray-300">
                                             {tool.name}
                                         </span>
