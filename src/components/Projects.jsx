@@ -1,23 +1,39 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaAngleLeft, FaAngleRight, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import {
+    FaAngleLeft,
+    FaAngleRight,
+    FaGithub,
+    FaExternalLinkAlt,
+} from "react-icons/fa";
 
 const projects = [
     {
+        name: "CampusConnect",
+        description:
+            "An AI-powered career platform offering internships, coding practice, and interview preparation with real-time feedback.",
+        tech: "Next.js, React, FastAPI, Python, Tailwind CSS, Render, Vercel",
+        image: "/cc.png",
+        github: "https://github.com/Avinash829/CampusConnect",
+        live: "https://campusconnect829.vercel.app/",
+    },
+    {
         name: "Chatterly",
-        description: "A real-time MERN chat app with Socket.io, modals, groups, and 1-on-1 chats.",
+        description:
+            "A real-time MERN chat app with Socket.io, modals, groups, and 1-on-1 chats.",
         tech: "MERN, Socket.io",
         image: "/chatterly.png",
         github: "https://github.com/Avinash829/Chatterly",
-        live: "https://avinashchatterly.netlify.app/"
+        live: "https://avinashchatterly.netlify.app/",
     },
     {
         name: "Health AI Assistant",
-        description: "Health chatbot using Gemini AI & Streamlit for quick medical suggestions.",
+        description:
+            "Health chatbot using Gemini AI & Streamlit for quick medical suggestions.",
         tech: "Python, Gemini AI, Streamlit",
         image: "/health-ai.png",
         github: "https://github.com/Avinash829/Health-AI-assistant",
-        live: "https://healthbot829.streamlit.app/"
+        live: "https://healthbot829.streamlit.app/",
     },
     {
         name: "Flippy Bird",
@@ -25,7 +41,7 @@ const projects = [
         tech: "HTML, CSS, JS",
         image: "/flippybird.png",
         github: "https://github.com/Avinash829/flippybird",
-        live: "https://avinash829.github.io/flippybird/"
+        live: "https://avinash829.github.io/flippybird/",
     },
     {
         name: "SafeSeek",
@@ -33,7 +49,7 @@ const projects = [
         tech: "React, Flask",
         image: "/safeseek.png",
         github: "https://github.com/Avinash829/safeseek",
-        live: "https://toxicsenses.netlify.app/"
+        live: "https://toxicsenses.netlify.app/",
     },
     {
         name: "Gemini Clone",
@@ -41,7 +57,7 @@ const projects = [
         tech: "React, Gemini AI",
         image: "/gemini-clone.png",
         github: "https://github.com/Avinash829/Avi_Gemini-Clone",
-        live: "https://geminiai829.netlify.app/"
+        live: "https://geminiai829.netlify.app/",
     },
     {
         name: "WeatherMate",
@@ -49,7 +65,7 @@ const projects = [
         tech: "HTML, CSS, JS",
         image: "/weather.png",
         github: "https://github.com/Avinash829/WeatherMate",
-        live: "#"
+        live: "#",
     },
 ];
 
@@ -59,12 +75,16 @@ const Projects = () => {
 
     const handlePrev = () => {
         setDirection("left");
-        setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+        setCurrentIndex((prev) =>
+            prev === 0 ? projects.length - 1 : prev - 1
+        );
     };
 
     const handleNext = () => {
         setDirection("right");
-        setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+        setCurrentIndex((prev) =>
+            prev === projects.length - 1 ? 0 : prev + 1
+        );
     };
 
     const currentProject = projects[currentIndex];
@@ -90,7 +110,10 @@ const Projects = () => {
     };
 
     return (
-        <section id="projects" className="py-20 px-4 sm:px-6 md:px-12 bg-black text-white min-h-screen">
+        <section
+            id="projects"
+            className="py-20 px-4 sm:px-6 md:px-12 bg-black text-white min-h-screen"
+        >
             <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -130,9 +153,15 @@ const Projects = () => {
                             transition={{ delay: 0.3, duration: 0.5 }}
                         />
                         <div className="p-4">
-                            <h3 className="text-lg font-semibold text-white">{currentProject.name}</h3>
-                            <p className="text-sm text-gray-400 mb-2">{currentProject.tech}</p>
-                            <p className="text-sm text-gray-300 mb-4">{currentProject.description}</p>
+                            <h3 className="text-lg font-semibold text-white">
+                                {currentProject.name}
+                            </h3>
+                            <p className="text-sm text-gray-400 mb-2">
+                                {currentProject.tech}
+                            </p>
+                            <p className="text-sm text-gray-300 mb-4">
+                                {currentProject.description}
+                            </p>
 
                             <div className="flex justify-between gap-3 flex-wrap">
                                 <a
@@ -149,7 +178,8 @@ const Projects = () => {
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 text-sm bg-amber-500 hover:bg-amber-600 text-black font-semibold py-2 px-4 rounded transition"
                                 >
-                                    <FaExternalLinkAlt className="text-base" /> Live
+                                    <FaExternalLinkAlt className="text-base" />{" "}
+                                    Live
                                 </a>
                             </div>
                         </div>

@@ -20,7 +20,7 @@ const PortfolioBackground = () => {
         window.addEventListener("resize", resizeCanvas);
 
         // Initialize particles
-        for (let i = 0; i < 125; i++) {
+        for (let i = 0; i < 50; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
@@ -29,7 +29,7 @@ const PortfolioBackground = () => {
                 speedX: (Math.random() - 0.5) * 0.5,
                 speedY: (Math.random() - 0.5) * 0.5,
                 speedZ: (Math.random() - 0.5) * 0.1,
-                opacity: Math.random() * 0.6 + 0.3
+                opacity: Math.random() * 0.6 + 0.3,
             });
         }
 
@@ -39,13 +39,17 @@ const PortfolioBackground = () => {
             mousePos.current = { x: clientX, y: clientY };
         };
         window.addEventListener("mousemove", handleInteraction);
-        window.addEventListener("touchmove", handleInteraction, { passive: true });
-        window.addEventListener("touchstart", handleInteraction, { passive: true });
+        window.addEventListener("touchmove", handleInteraction, {
+            passive: true,
+        });
+        window.addEventListener("touchstart", handleInteraction, {
+            passive: true,
+        });
 
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            particles.forEach(p => {
+            particles.forEach((p) => {
                 const perspective = 1000 / (1000 + p.z);
                 const x = p.x * perspective;
                 const y = p.y * perspective;
