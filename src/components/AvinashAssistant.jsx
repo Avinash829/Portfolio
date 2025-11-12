@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaRobot, FaTimes, FaPaperPlane } from "react-icons/fa";
 
 const resumeContext = `
 Avinash Pappala - Detailed Resume Context
@@ -60,37 +60,41 @@ PROJECTS:
 - Includes a downloadable Chrome extension that blocks websites when toxic input is detected.
 - Tools Used: React, TypeScript, Perspective API, Python.
 
+4. CampusConnect
+• Built an AI-powered career platform for internships, coding practice, and interview preparation.
+• Developed AI Interviewer using FastAPI to generate personalized role-based questions and feedback.
+• Integrated live internship data and adaptive coding practice modules based on user difficulty choice.
+• Tools Used: Next.js, FastAPI, React, Tailwind CSS, Python.
+
+
 ---
 
 SKILLS:
 - Languages: Python, JavaScript, Java, SQL, C
-- Frameworks & Libraries: React.js, Node.js, Express.js, LangChain, LangGraph, Firebase, Tailwind CSS
+- Frameworks & Libraries: React.js, Node.js, Express.js, FastAPI, LangChain, LangGraph, Firebase, Tailwind CSS
 - Developer Tools: Git, GitHub, VS Code, PyCharm, LangSmith
 - Databases: MongoDB, MySQL
 
 ---
 
 ACHIEVEMENTS:
-- Achieved 2★ on CodeChef (highest rating: 1463), top 20% on LeetCode (highest rating: 1647).
+- Achieved 2★ on CodeChef (highest rating: 1463), top 12% on LeetCode (highest rating: 1705).
 - Solved 500+ problems across CodeChef, LeetCode, and GeeksforGeeks.
 - GeeksforGeeks Campus Body lead.
 `;
 
-
-
-
 const AvinashAssistant = () => {
     const [open, setOpen] = useState(false);
     const [messages, setMessages] = useState([]);
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
     const messagesEndRef = useRef(null);
 
-    const toggleChat = () => setOpen(prev => !prev);
+    const toggleChat = () => setOpen((prev) => !prev);
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
     };
 
@@ -101,9 +105,9 @@ const AvinashAssistant = () => {
     const sendMessage = async () => {
         if (!input.trim()) return;
 
-        const userMessage = { sender: 'user', text: input };
-        setMessages(prev => [...prev, userMessage]);
-        setInput('');
+        const userMessage = { sender: "user", text: input };
+        setMessages((prev) => [...prev, userMessage]);
+        setInput("");
         setLoading(true);
 
         try {
@@ -118,25 +122,30 @@ ${resumeContext}
 User question: ${input}`;
 
             const res = await axios.post(
-                'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+                "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
                 {
-                    contents: [{ parts: [{ text: prompt }] }]
+                    contents: [{ parts: [{ text: prompt }] }],
                 },
                 {
                     headers: {
-                        'Content-Type': 'application/json',
-                        'X-goog-api-key': import.meta.env.VITE_GEMINI_API_KEY
-                    }
+                        "Content-Type": "application/json",
+                        "X-goog-api-key": import.meta.env.VITE_GEMINI_API_KEY,
+                    },
                 }
             );
 
-            const replyText = res?.data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Something went wrong.';
-            const botMessage = { sender: 'bot', text: replyText };
-            setMessages(prev => [...prev, botMessage]);
+            const replyText =
+                res?.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+                "Something went wrong.";
+            const botMessage = { sender: "bot", text: replyText };
+            setMessages((prev) => [...prev, botMessage]);
         } catch {
-            setMessages(prev => [
+            setMessages((prev) => [
                 ...prev,
-                { sender: 'bot', text: 'Sorry, there was an error fetching a reply.' }
+                {
+                    sender: "bot",
+                    text: "Sorry, there was an error fetching a reply.",
+                },
             ]);
         } finally {
             setLoading(false);
@@ -145,14 +154,21 @@ User question: ${input}`;
 
     return (
         <div className="font-mono fixed bottom-6 right-6 z-50 flex flex-col items-end">
-
             <motion.button
                 onClick={toggleChat}
                 className={`p-4 rounded-full shadow-lg text-black transition-all 
-                    ${open ? 'bg-blue-400 hover:bg-blue-600' : 'bg-blue-400 hover:bg-blue-600'}`}
+                    ${
+                        open
+                            ? "bg-blue-400 hover:bg-blue-600"
+                            : "bg-blue-400 hover:bg-blue-600"
+                    }`}
                 aria-label="Toggle Assistant"
                 animate={{ y: [0, -20, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                transition={{
+                    repeat: Infinity,
+                    duration: 1.5,
+                    ease: "easeInOut",
+                }}
             >
                 <FaRobot />
             </motion.button>
@@ -175,9 +191,10 @@ User question: ${input}`;
                                 <div
                                     key={i}
                                     className={`px-3 py-2 rounded-lg w-fit break-words max-w-[85%] sm:max-w-[75%] 
-                                        ${msg.sender === 'user'
-                                            ? 'ml-auto bg-green-600 text-white'
-                                            : 'mr-auto bg-gray-700 text-gray-200'
+                                        ${
+                                            msg.sender === "user"
+                                                ? "ml-auto bg-green-600 text-white"
+                                                : "mr-auto bg-gray-700 text-gray-200"
                                         }`}
                                 >
                                     {msg.text}
@@ -194,8 +211,10 @@ User question: ${input}`;
                         <div className="p-2 border-t border-gray-800 flex items-center bg-gray-950">
                             <input
                                 value={input}
-                                onChange={e => setInput(e.target.value)}
-                                onKeyDown={e => e.key === 'Enter' && sendMessage()}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={(e) =>
+                                    e.key === "Enter" && sendMessage()
+                                }
                                 className="flex-1 px-3 py-3 rounded-l-md bg-gray-800 text-white outline-none text-sm"
                                 placeholder="Ask about Avinash..."
                             />
@@ -206,7 +225,6 @@ User question: ${input}`;
                                 <FaPaperPlane />
                             </button>
                         </div>
-
                     </motion.div>
                 )}
             </AnimatePresence>
