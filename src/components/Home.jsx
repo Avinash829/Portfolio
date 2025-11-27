@@ -34,7 +34,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-cyan-400 text-xl sm:text-2xl md:text-3xl font-medium mb-8"
+                className="text-green-500 text-xl sm:text-2xl md:text-3xl font-medium mb-8"
             >
                 I am a{" "}
                 <span className="text-white">
@@ -62,17 +62,22 @@ const Home = () => {
             >
                 <a
                     href="#contact"
-                    className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full shadow-md transition-all duration-300 text-sm sm:text-base"
+                    className="border hover:border-amber-500 hover:text-amber-500 text-white px-6 py-3 rounded-full transition-all duration-300 text-sm sm:text-base relative overflow-hidden group"
                 >
                     Hire Me
+                    {/* ✨ Shine Effect */}
+                    <span className="absolute top-0 left-[-100%] w-full h-full bg-white/20 skew-x-12 group-hover:left-[100%] transition-all duration-700"></span>
                 </a>
+
                 <a
                     href="/Avinash_Pappala_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-transparent border border-white hover:bg-white hover:text-black text-white px-6 py-3 rounded-full transition-all duration-300 text-sm sm:text-base hover:cursor-pointer"
+                    className="bg-transparent border hover:border-green-500 hover:text-green-500 px-6 py-3 rounded-full transition-all duration-300 text-sm sm:text-base hover:cursor-pointer relative overflow-hidden group"
                 >
                     My Resume
+                    {/* ✨ Shine */}
+                    <span className="absolute top-0 left-[-100%] w-full h-full bg-white/20 skew-x-12 group-hover:left-[100%] transition-all duration-700"></span>
                 </a>
             </motion.div>
 
@@ -86,7 +91,7 @@ const Home = () => {
                     href="https://github.com/Avinash829"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-green-400 transition"
                 >
                     <FaGithub />
                 </a>
@@ -94,13 +99,13 @@ const Home = () => {
                     href="https://www.linkedin.com/in/avinashpappala"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-green-400 transition"
                 >
                     <FaLinkedin />
                 </a>
                 <a
                     href="mailto:avinashpappala@gmail.com"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-green-400 transition"
                 >
                     <FaEnvelope />
                 </a>

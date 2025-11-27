@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaRobot, FaTimes, FaPaperPlane } from "react-icons/fa";
+import { FaRobot, FaPaperPlane } from "react-icons/fa";
 
 const resumeContext = `
 Avinash Pappala - Detailed Resume Context
@@ -93,9 +93,7 @@ const AvinashAssistant = () => {
     const toggleChat = () => setOpen((prev) => !prev);
 
     const scrollToBottom = () => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
@@ -112,8 +110,8 @@ const AvinashAssistant = () => {
 
         try {
             const prompt = `
-You are Avinash's AI Assistant. Only answer questions related to him using the information below. 
-If user says hi, hello, bye, or gives feedback, respond politely and mention you are Avinash's Assistant. 
+You are Avinash's AI Assistant. Only answer questions related to him using the information below.
+If user says hi, hello, bye, or gives feedback, respond politely and mention you are Avinash's Assistant.
 If asked anything unrelated, respond:
 "I'm Avinash's assistant. I can only answer questions related to his professional background, skills, projects, achievements, and tech experience."
 
@@ -123,9 +121,7 @@ User question: ${input}`;
 
             const res = await axios.post(
                 "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
-                {
-                    contents: [{ parts: [{ text: prompt }] }],
-                },
+                { contents: [{ parts: [{ text: prompt }] }] },
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -136,16 +132,15 @@ User question: ${input}`;
 
             const replyText =
                 res?.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-                "Something went wrong.";
-            const botMessage = { sender: "bot", text: replyText };
-            setMessages((prev) => [...prev, botMessage]);
+                "Sorry, I couldn't fetch a response.";
+            setMessages((prev) => [
+                ...prev,
+                { sender: "bot", text: replyText },
+            ]);
         } catch {
             setMessages((prev) => [
                 ...prev,
-                {
-                    sender: "bot",
-                    text: "Sorry, there was an error fetching a reply.",
-                },
+                { sender: "bot", text: "Error fetching response." },
             ]);
         } finally {
             setLoading(false);
@@ -154,60 +149,67 @@ User question: ${input}`;
 
     return (
         <div className="font-mono fixed bottom-6 right-6 z-50 flex flex-col items-end">
+            {/* Chat Toggle Button */}
             <motion.button
                 onClick={toggleChat}
-                className={`p-4 rounded-full shadow-lg text-black transition-all 
-                    ${
-                        open
-                            ? "bg-blue-400 hover:bg-blue-600"
-                            : "bg-blue-400 hover:bg-blue-600"
-                    }`}
+                className="p-4 rounded-full shadow-xl text-black bg-yellow-500 hover:bg-yellow-400 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(255,215,0,0.6)]"
                 aria-label="Toggle Assistant"
-                animate={{ y: [0, -20, 0] }}
+                animate={{ y: [0, -10, 0] }}
                 transition={{
                     repeat: Infinity,
                     duration: 1.5,
                     ease: "easeInOut",
                 }}
             >
-                <FaRobot />
+                <FaRobot size={24} />
             </motion.button>
 
+            {/* Chat Window */}
             <AnimatePresence>
                 {open && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        className="mt-3 w-[90vw] max-w-[400px] h-[500px] bg-zinc-900 rounded-xl shadow-2xl 
-                                   flex flex-col overflow-hidden border border-blue-400"
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                        className="mt-3 w-[90vw] max-w-[400px] h-[500px] bg-zinc-900 rounded-xl shadow-2xl flex flex-col overflow-hidden border border-yellow-500"
                     >
-                        <div className="bg-blue-500 text-black text-center font-bold py-2">
+                        {/* Header */}
+                        <div className="bg-yellow-500 text-black text-center font-bold py-2 flex justify-center items-center gap-2">
                             Avinash's Assistant 🤖
                         </div>
 
+                        {/* Chat Messages */}
                         <div className="flex-1 p-3 space-y-3 overflow-y-auto text-sm custom-scrollbar">
                             {messages.map((msg, i) => (
-                                <div
+                                <motion.div
                                     key={i}
-                                    className={`px-3 py-2 rounded-lg w-fit break-words max-w-[85%] sm:max-w-[75%] 
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.25 }}
+                                    className={`px-3 py-2 rounded-lg w-fit max-w-[85%] break-words
                                         ${
                                             msg.sender === "user"
-                                                ? "ml-auto bg-green-600 text-white"
-                                                : "mr-auto bg-gray-700 text-gray-200"
+                                                ? "ml-auto bg-yellow-500 text-black"
+                                                : "mr-auto bg-gray-800 text-white"
                                         }`}
                                 >
                                     {msg.text}
-                                </div>
+                                </motion.div>
                             ))}
                             {loading && (
-                                <div className="mr-auto bg-gray-700 text-gray-200 px-3 py-2 rounded-lg">
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="mr-auto bg-gray-800 text-white px-3 py-2 rounded-lg animate-pulse w-1/2"
+                                >
                                     Typing...
-                                </div>
+                                </motion.div>
                             )}
                             <div ref={messagesEndRef} />
                         </div>
 
+                        {/* Input */}
                         <div className="p-2 border-t border-gray-800 flex items-center bg-gray-950">
                             <input
                                 value={input}
@@ -215,15 +217,20 @@ User question: ${input}`;
                                 onKeyDown={(e) =>
                                     e.key === "Enter" && sendMessage()
                                 }
-                                className="flex-1 px-3 py-3 rounded-l-md bg-gray-800 text-white outline-none text-sm"
+                                className="flex-1 px-3 py-3 rounded-l-md bg-gray-800 text-white outline-none text-sm placeholder:text-gray-400 transition-all duration-300 focus:ring-2 focus:ring-yellow-400"
                                 placeholder="Ask about Avinash..."
                             />
-                            <button
+                            <motion.button
                                 onClick={sendMessage}
-                                className="bg-blue-500 px-3 py-3 rounded-r-md text-black hover:bg-blue-400 transition"
+                                whileHover={{
+                                    scale: 1.1,
+                                    boxShadow:
+                                        "0px 0px 12px rgba(255,215,0,0.7)",
+                                }}
+                                className="bg-yellow-500 px-3 py-3 rounded-r-md text-black transition-all duration-300"
                             >
                                 <FaPaperPlane />
-                            </button>
+                            </motion.button>
                         </div>
                     </motion.div>
                 )}

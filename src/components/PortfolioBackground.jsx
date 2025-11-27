@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from "react";
 const PortfolioBackground = () => {
     const canvasRef = useRef(null);
     const animationRef = useRef(null);
-    const mousePos = useRef({ x: 0, y: 0 });
+    const hueRef = useRef(0);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -19,8 +19,7 @@ const PortfolioBackground = () => {
         resizeCanvas();
         window.addEventListener("resize", resizeCanvas);
 
-        // Initialize particles
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 25; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
@@ -30,24 +29,13 @@ const PortfolioBackground = () => {
                 speedY: (Math.random() - 0.5) * 0.5,
                 speedZ: (Math.random() - 0.5) * 0.1,
                 opacity: Math.random() * 0.6 + 0.3,
+                colorOffset: Math.random() * 360,
             });
         }
 
-        const handleInteraction = (e) => {
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            mousePos.current = { x: clientX, y: clientY };
-        };
-        window.addEventListener("mousemove", handleInteraction);
-        window.addEventListener("touchmove", handleInteraction, {
-            passive: true,
-        });
-        window.addEventListener("touchstart", handleInteraction, {
-            passive: true,
-        });
-
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hueRef.current = (hueRef.current + 1.5) % 360;
 
             particles.forEach((p) => {
                 const perspective = 1000 / (1000 + p.z);
@@ -57,7 +45,10 @@ const PortfolioBackground = () => {
 
                 ctx.beginPath();
                 ctx.arc(x, y, size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+
+                // 🎉 DISCO COLOR EFFECT
+                const hue = (hueRef.current + p.colorOffset) % 360;
+                ctx.fillStyle = `hsla(${hue}, 100%, 60%, ${p.opacity})`;
                 ctx.fill();
 
                 p.x += p.speedX;
@@ -78,9 +69,6 @@ const PortfolioBackground = () => {
 
         return () => {
             window.removeEventListener("resize", resizeCanvas);
-            window.removeEventListener("mousemove", handleInteraction);
-            window.removeEventListener("touchmove", handleInteraction);
-            window.removeEventListener("touchstart", handleInteraction);
             cancelAnimationFrame(animationRef.current);
         };
     }, []);
