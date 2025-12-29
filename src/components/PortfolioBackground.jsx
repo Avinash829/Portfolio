@@ -19,7 +19,7 @@ const PortfolioBackground = () => {
         resizeCanvas();
         window.addEventListener("resize", resizeCanvas);
 
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 50; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
@@ -46,7 +46,6 @@ const PortfolioBackground = () => {
                 ctx.beginPath();
                 ctx.arc(x, y, size, 0, Math.PI * 2);
 
-                // 🎉 DISCO COLOR EFFECT
                 const hue = (hueRef.current + p.colorOffset) % 360;
                 ctx.fillStyle = `hsla(${hue}, 100%, 60%, ${p.opacity})`;
                 ctx.fill();

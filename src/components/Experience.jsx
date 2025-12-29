@@ -18,7 +18,7 @@ const experiences = [
     {
         role: "Full Stack Developer Intern",
         company: "Willowave Platform Pvt. Ltd.",
-        duration: "Sept 2025 – Present",
+        duration: "Sept 2025 – December 2025",
         type: "Remote",
         description: [
             "Work on building and integrating REST APIs for client applications.",
