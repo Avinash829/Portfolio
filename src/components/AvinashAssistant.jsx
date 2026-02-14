@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaRobot, FaPaperPlane } from "react-icons/fa";
+import ReactMarkdown from "react-markdown";
 
 const resumeContext = `
 Avinash Pappala - Detailed Resume Context
@@ -25,8 +26,14 @@ EDUCATION:
 ---
 
 EXPERIENCE:
+Quality Assurance Intern – Scaler (Dec 2025 – Feb 2026) [Remote]
+-Reviewed and validated AI training tasks to ensure accuracy and adherence to quality standards.
+-Tested REST APIs to verify response correctness, edge cases, and integration reliability.
+-Performed dataset quality audits to identify inconsistencies affecting model performance.
+-Collaborated with QA and operations teams to improve review workflows and quality benchmarks.
+Tools Used: Postman, REST APIs, Data Annotation Platforms, Git.
 
-Full Stack Developer Intern – Willowave Platform Pvt. Ltd. (Sept 2025 – Present) [Remote]
+Full Stack Developer Intern – Willowave Platform Pvt. Ltd. (Sept 2025 – Dec 2025) [Remote]
 - Work on building and integrating REST APIs for client applications.
 - Implement LangChain-based AI features and optimize existing workflows.
 - Collaborate on full stack development with focus on performance and seamless integration.
@@ -110,17 +117,27 @@ const AvinashAssistant = () => {
 
         try {
             const prompt = `
-You are Avinash's AI Assistant. Only answer questions related to him using the information below.
-If user says hi, hello, bye, or gives feedback, respond politely and mention you are Avinash's Assistant.
-If asked anything unrelated, respond:
+You are Avinash's AI Assistant.
+
+Respond in clean Markdown format:
+- Use short paragraphs
+- Use bullet points where helpful
+- Bold important terms
+- Keep tone professional and friendly
+- Avoid long walls of text
+
+Only answer questions related to him using the information below.
+
+If unrelated, say:
 "I'm Avinash's assistant. I can only answer questions related to his professional background, skills, projects, achievements, and tech experience."
 
 ${resumeContext}
 
-User question: ${input}`;
+User question: ${input}
+`;
 
             const res = await axios.post(
-                "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+                "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
                 { contents: [{ parts: [{ text: prompt }] }] },
                 {
                     headers: {
@@ -194,7 +211,27 @@ User question: ${input}`;
                                                 : "mr-auto bg-gray-800 text-white"
                                         }`}
                                 >
-                                    {msg.text}
+                                    <ReactMarkdown
+                                        components={{
+                                            strong: ({ children }) => (
+                                                <strong className="text-yellow-400 font-semibold">
+                                                    {children}
+                                                </strong>
+                                            ),
+                                            p: ({ children }) => (
+                                                <p className="mb-2 leading-relaxed">
+                                                    {children}
+                                                </p>
+                                            ),
+                                            li: ({ children }) => (
+                                                <li className="ml-4 list-disc">
+                                                    {children}
+                                                </li>
+                                            ),
+                                        }}
+                                    >
+                                        {msg.text}
+                                    </ReactMarkdown>
                                 </motion.div>
                             ))}
                             {loading && (

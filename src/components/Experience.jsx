@@ -1,155 +1,102 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
-import {
-    SiMongodb,
-    SiExpress,
-    SiTailwindcss,
-    SiVite,
-    SiFigma,
-    SiLangchain,
-    SiTypescript,
-    SiNextdotjs,
-} from "react-icons/si";
-import { TbTopologyStar3 } from "react-icons/tb"; // for React XyFlow (flow/network-like icon)
 
-// ✅ Experience Data
 const experiences = [
     {
-        role: "Full Stack Developer Intern",
-        company: "Willowave Platform Pvt. Ltd.",
-        duration: "Sept 2025 – December 2025",
-        type: "Remote",
-        description: [
-            "Work on building and integrating REST APIs for client applications.",
-            "Implement LangChain-based AI features and optimize existing workflows.",
-            "Collaborate on full stack development with focus on performance and seamless integration.",
-            "Develop dynamic UIs using Next.js and TypeScript for improved reliability.",
-            "Utilize React XyFlow to create visual workflow editors and interactive diagrams.",
-        ],
-        tools: [
-            { name: "Next.js", icon: <SiNextdotjs className="text-white" /> },
-            {
-                name: "TypeScript",
-                icon: <SiTypescript className="text-blue-500" />,
-            },
-            { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-            {
-                name: "Express.js",
-                icon: <SiExpress className="text-gray-300" />,
-            },
-            { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
-            {
-                name: "LangChain",
-                icon: <SiLangchain className="text-yellow-400" />,
-            },
-            { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
-            { name: "Figma", icon: <SiFigma className="text-pink-500" /> },
+        role: "Quality Assurance Intern",
+        company: "Scaler",
+        duration: "Dec 2025 – Feb 2026",
+        points: [
+            "Reviewed and validated AI training tasks to ensure accuracy and compliance with quality standards.",
+            "Tested REST APIs to verify response accuracy, edge cases, and integration reliability.",
+            "Collaborated with QA and operations teams to improve review workflows and quality benchmarks.",
         ],
     },
     {
-        role: "Frontend Developer Intern",
-        company: "ZORO Innovations",
-        duration: "June 2025 – July 2025",
-        type: "Remote",
-        description: [
-            "Contributed to Campus Core, a campus management platform for students, faculty, and admins.",
-            "Built the Student Dashboard for managing attendance, timetable, results, and feedback.",
-            "Worked closely with backend and UI teams to integrate APIs and ensure smooth user experience.",
+        role: "Software Developer Intern",
+        company: "WilloWave",
+        duration: "Sep 2025 – Dec 2025",
+        points: [
+            "Migrated multiple React.js applications to Next.js, improving page load and rendering performance by 35%.",
+            "Built AI-powered applications, intelligent agents, and dashboards to enhance user productivity.",
+            "Optimized REST APIs, reducing average response times and improving system efficiency by 30%.",
+            "Collaborated with cross-functional teams to deliver scalable production-ready features.",
         ],
-        tools: [
-            { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
-            {
-                name: "Tailwind CSS",
-                icon: <SiTailwindcss className="text-sky-400" />,
-            },
-            { name: "Vite", icon: <SiVite className="text-purple-400" /> },
-            { name: "Figma", icon: <SiFigma className="text-pink-500" /> },
-            { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
+    },
+    {
+        role: "Software Developer Intern",
+        company: "ZORO Innovations",
+        duration: "Jun 2025 – Jul 2025",
+        points: [
+            "Developed a comprehensive Student Dashboard for attendance, results, timetables, and feedback.",
+            "Integrated frontend interfaces with REST APIs for real-time data interaction, improving UX by 40%.",
+            "Built modular and reusable React components to enhance maintainability and scalability.",
         ],
     },
 ];
 
-const containerVariants = {
-    hidden: {},
-    show: {
-        transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.2,
-        },
-    },
-};
-
-const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    show: {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: { duration: 0.5, ease: "easeOut" },
-    },
-};
-
 const Experience = () => {
     return (
-        <section
-            id="experience"
-            className="py-16 px-4 sm:px-6 lg:px-20 bg-black text-white pt-28"
-        >
-            <div className="max-w-7xl mx-auto text-center">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-3xl sm:text-4xl font-bold mb-12 text-amber-400"
-                >
-                    Experience
-                </motion.h2>
+        <section className="bg-black text-white py-20 px-6">
+            <h2 className="text-4xl font-bold text-center text-amber-400 mb-20">
+                Experience
+            </h2>
 
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.2 }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
-                >
-                    {experiences.map((exp, index) => (
-                        <motion.div
-                            key={index}
-                            variants={cardVariants}
-                            className="p-6 bg-gray-900 rounded-xl shadow-md hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-amber-400 text-left"
-                        >
-                            <h3 className="text-xl font-semibold text-amber-400 mb-1">
-                                {exp.role}
-                            </h3>
-                            <p className="text-gray-300 mb-2">
-                                {exp.company} ({exp.duration}) –{" "}
-                                <span className="italic">{exp.type}</span>
-                            </p>
-                            <ul className="list-disc list-inside text-gray-400 mb-4 space-y-1">
-                                {exp.description.map((point, i) => (
-                                    <li key={i}>{point}</li>
-                                ))}
-                            </ul>
-                            <div className="flex flex-wrap gap-3 mt-2">
-                                {exp.tools.map((tool, i) => (
-                                    <div
-                                        key={i}
-                                        className="glow-border flex items-center gap-2 bg-gray-800 px-3 py-2 rounded-lg shadow hover:shadow-lg transition"
-                                    >
-                                        <span className="text-xl">
-                                            {tool.icon}
-                                        </span>
-                                        <span className="text-sm text-gray-300">
-                                            {tool.name}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+            <div className="relative max-w-5xl mx-auto">
+                {/* Vertical line */}
+                <div className="absolute left-1/2 top-0 w-1 h-full bg-gray-800 transform -translate-x-1/2">
+                    <motion.div
+                        className="w-full bg-amber-400 origin-top"
+                        style={{ height: "100%" }}
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                    />
+                </div>
+
+                {/* Timeline items */}
+                <div className="space-y-20">
+                    {experiences.map((exp, index) => {
+                        const isLeft = index % 2 === 0;
+
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 80 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                className={`relative flex ${
+                                    isLeft ? "justify-start" : "justify-end"
+                                }`}
+                            >
+                                {/* Dot */}
+                                <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 bg-amber-400 rounded-full border-4 border-black z-10" />
+
+                                {/* Card */}
+                                <div className="w-full md:w-[45%] bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800 hover:border-amber-400 transition">
+                                    <h3 className="text-xl font-semibold text-amber-400">
+                                        {exp.role}
+                                    </h3>
+
+                                    <p className="text-gray-300 mt-1">
+                                        {exp.company}
+                                    </p>
+
+                                    <p className="text-sm text-gray-500 mb-3">
+                                        {exp.duration}
+                                    </p>
+
+                                    <ul className="list-disc list-inside text-gray-400 space-y-1">
+                                        {exp.points.map((p, i) => (
+                                            <li key={i}>{p}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
             </div>
         </section>
     );
