@@ -7,6 +7,9 @@ const Home = () => {
     return (
         <section
             id="home"
+            aria-label="Avinash Pappala Portfolio Home"
+            itemScope
+            itemType="https://schema.org/Person"
             className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-20 text-center "
         >
             <motion.div
@@ -28,7 +31,12 @@ const Home = () => {
                 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 leading-tight"
             >
                 I'm Avinash
+                <span className="sr-only"> Avinash Pappala</span>
             </motion.h1>
+            <span className="sr-only" itemProp="description">
+                Avinash Pappala is a Full Stack Developer specializing in React,
+                Next.js, AI applications, and competitive programming.
+            </span>
 
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -85,30 +93,53 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1 }}
-                className="flex gap-6 text-xl sm:text-2xl text-white"
+                className="flex gap-8 text-2xl text-white"
             >
-                <a
+                {/* GitHub */}
+                <motion.a
                     href="https://github.com/Avinash829"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-green-400 transition"
+                    aria-label="Avinash Pappala GitHub Profile"
+                    itemProp="sameAs"
+                    whileHover={{ scale: 1.2, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="relative p-3 rounded-full group"
                 >
-                    <FaGithub />
-                </a>
-                <a
+                    <span className="absolute inset-0 rounded-full bg-green-400 opacity-0 group-hover:opacity-20 blur-lg transition duration-300"></span>
+                    <FaGithub className="relative z-10 group-hover:text-green-400 transition duration-300" />
+                </motion.a>
+
+                {/* LinkedIn */}
+                <motion.a
                     href="https://www.linkedin.com/in/avinashpappala"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-green-400 transition"
+                    aria-label="Avinash Pappala LinkedIn Profile"
+                    itemProp="sameAs"
+                    whileHover={{ scale: 1.2, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="relative p-3 rounded-full group"
                 >
-                    <FaLinkedin />
-                </a>
-                <a
+                    <span className="absolute inset-0 rounded-full bg-blue-400 opacity-0 group-hover:opacity-20 blur-lg transition duration-300"></span>
+                    <FaLinkedin className="relative z-10 group-hover:text-blue-400 transition duration-300" />
+                </motion.a>
+
+                {/* Email */}
+                <motion.a
                     href="mailto:avinashpappala@gmail.com"
-                    className="hover:text-green-400 transition"
+                    itemProp="email"
+                    aria-label="Email Avinash Pappala"
+                    whileHover={{ scale: 1.2, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="relative p-3 rounded-full group"
                 >
-                    <FaEnvelope />
-                </a>
+                    <span className="absolute inset-0 rounded-full bg-yellow-400 opacity-0 group-hover:opacity-20 blur-lg transition duration-300"></span>
+                    <FaEnvelope className="relative z-10 group-hover:text-yellow-400 transition duration-300" />
+                </motion.a>
             </motion.div>
         </section>
     );

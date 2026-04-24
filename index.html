@@ -1,16 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/png" href="/logo.png" />
+        <link rel="canonical" href="https://avinashpappala.pages.dev" />
 
-<head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avinash Portfolio</title>
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-</body>
+        <!-- 🔥 TITLE (VERY IMPORTANT) -->
+        <title>Avinash Pappala | Software Engineer Portfolio</title>
 
+        <!-- SEO -->
+        <meta
+            name="description"
+            content="Avinash Pappala - Full Stack Developer specializing in React, Next.js, and AI applications. Explore projects, skills, and experience."
+        />
+
+        <meta
+            name="keywords"
+            content="Avinash Pappala, Full Stack Developer, React Developer, Next.js Developer, Software Engineer, AI Developer"
+        />
+
+        <meta name="author" content="Avinash Pappala" />
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="Avinash Pappala Portfolio" />
+        <meta
+            property="og:description"
+            content="Full Stack Developer | AI Projects | React & Next.js"
+        />
+        <meta property="og:url" content="https://avinashpappala.pages.dev" />
+        <meta property="og:type" content="website" />
+
+        <!-- Twitter (still useful even without account) -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Avinash Pappala Portfolio" />
+        <meta
+            name="twitter:description"
+            content="Full Stack Developer | AI Projects | React & Next.js"
+        />
+
+        <!-- 🔥 STRUCTURED DATA (THIS IS THE GAME CHANGER) -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Avinash Pappala",
+                "url": "https://avinashpappala.pages.dev",
+                "jobTitle": "Software Engineer",
+                "sameAs": [
+                    "https://www.linkedin.com/in/avinashpappala/",
+                    "https://github.com/Avinash829",
+                    "https://leetcode.com/u/avinash_829/"
+                ]
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/main.jsx"></script>
+    </body>
 </html>
