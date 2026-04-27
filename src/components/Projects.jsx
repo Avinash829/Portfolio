@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    FaAngleLeft,
-    FaAngleRight,
-    FaGithub,
-    FaExternalLinkAlt,
-} from "react-icons/fa";
+    FiChevronLeft,
+    FiChevronRight,
+    FiGithub,
+    FiExternalLink,
+} from "react-icons/fi";
 
 const projects = [
     {
@@ -92,108 +92,191 @@ const Projects = () => {
     const cardVariants = {
         hidden: (dir) => ({
             opacity: 0,
-            x: dir === "right" ? 100 : -100,
+            x: dir === "right" ? 50 : -50,
             scale: 0.95,
+            filter: "blur(4px)",
         }),
         visible: {
             opacity: 1,
             x: 0,
             scale: 1,
+            filter: "blur(0px)",
             transition: { duration: 0.5, ease: "easeOut" },
         },
         exit: (dir) => ({
             opacity: 0,
-            x: dir === "right" ? -100 : 100,
-            scale: 0.9,
-            transition: { duration: 0.4, ease: "easeInOut" },
+            x: dir === "right" ? -50 : 50,
+            scale: 0.95,
+            filter: "blur(4px)",
+            transition: { duration: 0.4, ease: "easeIn" },
         }),
     };
 
     return (
         <section
             id="projects"
-            className="py-20 px-4 sm:px-6 md:px-12 bg-black text-white min-h-screen"
+            className="relative py-20 px-4 sm:px-6 lg:px-8 bg-transparent min-h-screen flex flex-col justify-center overflow-hidden"
         >
+            {/* Ambient Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-green-500/10 blur-[100px] sm:blur-[120px] rounded-full pointer-events-none -z-10" />
+
             <motion.h2
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="text-3xl sm:text-4xl font-bold text-center mb-12 text-amber-400 mt-5"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-10 sm:mb-16 bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent"
             >
-                Projects
+                Featured <span className="text-green-500">Work</span>
             </motion.h2>
 
-            <div className="relative flex justify-center w-full max-w-4xl mx-auto">
+            <div className="relative flex flex-col items-center w-full max-w-6xl mx-auto">
+                {/* DESKTOP Left Arrow (Hidden on Mobile) */}
                 <motion.button
                     onClick={handlePrev}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{
+                        scale: 1.1,
+                        backgroundColor: "rgba(34, 197, 94, 0.1)",
+                    }}
                     whileTap={{ scale: 0.9 }}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 transition text-3xl z-10"
+                    className="hidden md:flex absolute left-0 lg:left-8 top-1/2 -translate-y-1/2 p-3 lg:p-4 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-green-400 hover:border-green-400/50 backdrop-blur-md transition-all z-20"
                 >
-                    <FaAngleLeft />
+                    <FiChevronLeft className="text-2xl lg:text-3xl" />
                 </motion.button>
 
-                <AnimatePresence mode="wait" custom={direction}>
-                    <motion.div
-                        key={currentIndex}
-                        custom={direction}
-                        variants={cardVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        className="bg-gray-900 rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-amber-400 mx-12"
-                    >
-                        <motion.img
-                            src={currentProject.image}
-                            alt={currentProject.name}
-                            className="w-full h-44 sm:h-48 object-cover p-2 border border-amber-50"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.3, duration: 0.5 }}
-                        />
-                        <div className="p-4">
-                            <h3 className="text-lg font-semibold text-white">
-                                {currentProject.name}
-                            </h3>
-                            <p className="text-sm text-gray-400 mb-2">
-                                {currentProject.tech}
-                            </p>
-                            <p className="text-sm text-gray-300 mb-4">
-                                {currentProject.description}
-                            </p>
+                {/* Project Card Container */}
+                <div className="w-full max-w-2xl">
+                    <AnimatePresence mode="wait" custom={direction}>
+                        <motion.div
+                            key={currentIndex}
+                            custom={direction}
+                            variants={cardVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:border-green-500/30 transition-colors duration-500 w-full"
+                        >
+                            {/* Image Container */}
+                            <div className="relative h-48 sm:h-64 md:h-72 w-full overflow-hidden">
+                                <motion.img
+                                    src={currentProject.image}
+                                    alt={currentProject.name}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-                            <div className="flex justify-between gap-3 flex-wrap">
-                                <a
-                                    href={currentProject.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 text-sm bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded transition"
-                                >
-                                    <FaGithub className="text-base" /> GitHub
-                                </a>
-                                <a
-                                    href={currentProject.live}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 text-sm bg-amber-500 hover:bg-amber-600 text-black font-semibold py-2 px-4 rounded transition"
-                                >
-                                    <FaExternalLinkAlt className="text-base" />{" "}
-                                    Live
-                                </a>
+                                {/* Floating Title */}
+                                <div className="absolute bottom-4 left-4 sm:left-6 pr-4 sm:pr-6">
+                                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white drop-shadow-lg leading-tight">
+                                        {currentProject.name}
+                                    </h3>
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
-                </AnimatePresence>
 
+                            <div className="p-5 sm:p-6 md:p-8">
+                                {/* Tech Badges */}
+                                <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                                    {currentProject.tech
+                                        .split(", ")
+                                        .map((tech, i) => (
+                                            <span
+                                                key={i}
+                                                className="text-[10px] sm:text-xs font-medium px-2.5 sm:px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 whitespace-nowrap"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                </div>
+
+                                <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+                                    {currentProject.description}
+                                </p>
+
+                                {/* Action Buttons - Stack on mobile, inline on sm+ */}
+                                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                                    <a
+                                        href={currentProject.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full sm:w-auto flex justify-center items-center gap-2 text-sm font-semibold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white py-2.5 px-5 rounded-lg transition-all duration-300"
+                                    >
+                                        <FiGithub className="text-lg" /> Source
+                                        Code
+                                    </a>
+                                    <a
+                                        href={currentProject.live}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full sm:w-auto flex justify-center items-center gap-2 text-sm font-semibold bg-green-500 hover:bg-green-400 text-black py-2.5 px-5 rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)]"
+                                    >
+                                        <FiExternalLink className="text-lg" />{" "}
+                                        Live Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+
+                {/* DESKTOP Right Arrow (Hidden on Mobile) */}
                 <motion.button
                     onClick={handleNext}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{
+                        scale: 1.1,
+                        backgroundColor: "rgba(34, 197, 94, 0.1)",
+                    }}
                     whileTap={{ scale: 0.9 }}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 transition text-3xl z-10"
+                    className="hidden md:flex absolute right-0 lg:right-8 top-1/2 -translate-y-1/2 p-3 lg:p-4 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-green-400 hover:border-green-400/50 backdrop-blur-md transition-all z-20"
                 >
-                    <FaAngleRight />
+                    <FiChevronRight className="text-2xl lg:text-3xl" />
                 </motion.button>
+
+                {/* MOBILE Controls & Pagination */}
+                <div className="flex md:hidden items-center justify-between w-full max-w-[280px] mt-8">
+                    <motion.button
+                        onClick={handlePrev}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-green-400 backdrop-blur-md"
+                    >
+                        <FiChevronLeft className="text-xl" />
+                    </motion.button>
+
+                    {/* Dots */}
+                    <div className="flex justify-center gap-2">
+                        {projects.map((_, idx) => (
+                            <div
+                                key={idx}
+                                className={`h-1.5 rounded-full transition-all duration-300 ${
+                                    idx === currentIndex
+                                        ? "w-6 sm:w-8 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"
+                                        : "w-2 bg-gray-600"
+                                }`}
+                            />
+                        ))}
+                    </div>
+
+                    <motion.button
+                        onClick={handleNext}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-green-400 backdrop-blur-md"
+                    >
+                        <FiChevronRight className="text-xl" />
+                    </motion.button>
+                </div>
+
+                {/* DESKTOP Pagination (Hidden on Mobile) */}
+                <div className="hidden md:flex justify-center gap-2 mt-8">
+                    {projects.map((_, idx) => (
+                        <div
+                            key={idx}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
+                                idx === currentIndex
+                                    ? "w-8 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"
+                                    : "w-2 bg-gray-600"
+                            }`}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );

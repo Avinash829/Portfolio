@@ -10,6 +10,7 @@ import AvinashAssistant from "./components/AvinashAssistant";
 import Experience from "./components/Experience";
 import PortfolioBackground from "./components/PortfolioBackground"; // <-- updated import
 import Cursor from "./components/Cursor";
+import CodingProfiles from "./components/CodingProfiles";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <Home />
                 <About />
                 <Skills />
+                <CodingProfiles />
                 <Projects />
                 <Experience />
                 <Contact />
