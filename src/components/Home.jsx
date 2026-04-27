@@ -48,7 +48,8 @@ const Home = () => {
                 <span className="text-white">
                     <Typewriter
                         words={[
-                            "Full Stack Developer",
+                            "Software Engineer",
+                            "Freelance Developer",
                             "Data Analyst",
                             "Competitive Programmer",
                         ]}
@@ -77,16 +78,15 @@ const Home = () => {
                     <span className="absolute top-0 left-[-100%] w-full h-full bg-white/20 skew-x-12 group-hover:left-[100%] transition-all duration-700"></span>
                 </a>
 
-                <a
+                {/* <a
                     href="/Avinash_Pappala_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-transparent border hover:border-green-500 hover:text-green-500 px-6 py-3 rounded-full transition-all duration-300 text-sm sm:text-base hover:cursor-pointer relative overflow-hidden group"
                 >
                     My Resume
-                    {/* ✨ Shine */}
                     <span className="absolute top-0 left-[-100%] w-full h-full bg-white/20 skew-x-12 group-hover:left-[100%] transition-all duration-700"></span>
-                </a>
+                </a> */}
             </motion.div>
 
             <motion.div
