@@ -53,10 +53,10 @@ const Contact = () => {
 
         emailjs
             .sendForm(
-                "service_3xxnpwo",
+                "service_9pcjkvq",
                 "template_htyvhvh",
                 form.current,
-                "YKOensNfl_7C0QiUe"
+                "6s0iE-kHAvZn_h6LB"
             )
             .then(() => {
                 setIsSubmitting(false);
@@ -96,7 +96,8 @@ const Contact = () => {
                     >
                         <FiCheckCircle className="text-xl" />
                         <span className="font-medium">
-                            Message transmitted successfully.
+                            Message delivered successfully! Avinash will get
+                            back to you within 24 hours.
                         </span>
                     </motion.div>
                 )}
@@ -261,7 +262,7 @@ const Contact = () => {
                         className="group/btn relative flex items-center justify-center gap-2 w-full bg-green-500 hover:bg-green-400 text-black font-bold py-3.5 px-6 rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.2)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
                     >
                         <span className="relative z-10">
-                            {isSubmitting ? "Transmitting..." : "Send Message"}
+                            {isSubmitting ? "Sending..." : "Send Message"}
                         </span>
                         <FiSend
                             className={`relative z-10 text-lg transition-transform duration-300 ${
