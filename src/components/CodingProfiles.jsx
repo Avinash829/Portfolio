@@ -13,7 +13,7 @@ import {
 const CodingProfiles = () => {
     // State to hold our live data, initialized with your "Personal Bests" as fallbacks
     const [stats, setStats] = useState({
-        leetcode: { rating: "1882", rank: "Top 5%", loading: true },
+        leetcode: { rating: "1931", rank: "Top 5%", loading: true },
         codechef: { rating: "1465", problems: "500+", loading: true },
     });
 
@@ -32,7 +32,7 @@ const CodingProfiles = () => {
 
                 setStats((prev) => ({
                     leetcode: {
-                        rating: "1882", // Keeping your max rating static as it's an achievement
+                        rating: "1931", // Keeping your max rating static as it's an achievement
                         rank: lcResponse.data.ranking
                             ? `Global Rank: ${lcResponse.data.ranking}`
                             : prev.leetcode.rank,
